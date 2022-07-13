@@ -52,7 +52,7 @@
 
 <script>
 import { defineComponent, onMounted, ref, watch } from "vue";
-import { Table, Tag, Input, Row, Col, Space, Button, Dropdown, Menu } from "ant-design-vue";
+import { Table, Tag, Input, Row, Col, Space, Button, Dropdown, Menu, message } from "ant-design-vue";
 import { usePagination } from 'vue-request'
 import { computed } from "@vue/reactivity";
 import { getGroups, getPatients, getTestsByPatientId, getExportFile } from "@/api/kawasaki";
@@ -200,11 +200,26 @@ export default defineComponent({
       }
     }
 
-    const handleExport = async (e) => {
-      console.log('click', e.key);
+    const downloadMsgKey = "download";
+
+    const handleExport = (e) => {
       if (e.key === "1") {
-        const data = await getExportFile();
-        console.log(data["content-disposition"].split("=")[1], data["content-length"]);
+        message.loading({
+          content: "正在导出...",
+          key: downloadMsgKey,
+        });
+        getExportFile().then(() => {
+          message.success({
+            content: "导出成功",
+            key: downloadMsgKey,
+          });
+        }).catch(err => {
+          message.error({
+            content: "导出失败",
+            key: downloadMsgKey,
+          });
+          console.log(err);
+        });
       }
     }
 

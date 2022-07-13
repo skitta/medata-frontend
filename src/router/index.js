@@ -26,11 +26,13 @@ const routes = [
             path: 'patient',
             name: 'add-patient',
             component: () => import('../views/home/add/AddPatientView.vue'),
+            meta: { colSpan: 12 }
           },
           {
             path: 'tests',
             name: 'add-tests',
             component: () => import('../views/home/add/AddTestsView.vue'),
+            meta: { colSpan: 16 }
           },
         ],
       },

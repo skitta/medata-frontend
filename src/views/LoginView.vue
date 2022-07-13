@@ -28,7 +28,7 @@
             </a-input-password>
           </a-form-item>
           <a-form-item>
-            <a-button type="primary" html-type="submit" :disabled="formState.user === '' || formState.password === ''">
+            <a-button type="primary" html-type="submit" :disabled="formState.user === '' || formState.password === ''" :loading="submitLoading">
               Log in
             </a-button>
           </a-form-item>
@@ -43,7 +43,7 @@
 
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, ref } from "vue";
 import { Form, Input, Button, Card, Select, Alert } from "ant-design-vue";
 import { ParticlesBg } from "particles-bg-vue";
 import { useStore } from "vuex";
@@ -92,17 +92,22 @@ export default defineComponent({
       },
     ];
 
+    const submitLoading = ref(false);
+
     const handleSubmit = () => {
+      submitLoading.value = true;
       const { user, password } = formState;
 
       getToken(user, password)
         .then(token => {
           store.commit("setToken", token);
+          submitLoading.value = false;
         })
         .then(() => {
           router.push({ name: "home" });
         })
         .catch(err => {
+          submitLoading.value = false;
           console.log(err);
           if (err.code === 'ERR_NETWORK') {
             formState.msg = "网络错误";
@@ -121,6 +126,7 @@ export default defineComponent({
     return {
       formState,
       roleOptions,
+      submitLoading,
       handleSubmit,
       handleInputChange,
     };

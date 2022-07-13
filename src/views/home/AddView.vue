@@ -1,7 +1,7 @@
 <template>
   <div class="add">
-    <a-row>
-      <a-col :span="12" :offset="6">
+    <a-row justify="space-around">
+      <a-col :span="colSpan">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -13,9 +13,10 @@
 </template>
 
 <script>
-import { defineComponent, onMounted } from "vue";
+import { defineComponent } from "vue";
 import { Row, Col } from "ant-design-vue";
 import { onBeforeRouteUpdate, useRouter } from "vue-router";
+import { computed } from "@vue/reactivity";
 
 export default defineComponent({
   name: "AddView",
@@ -26,19 +27,18 @@ export default defineComponent({
 
   setup() {
     const router = useRouter();
-
+    const colSpan = computed(() => {
+      return router.currentRoute.value.meta.colSpan;
+    });
     onBeforeRouteUpdate(async (to) => {
       if (to.name === 'add') {
         return false;
       }
     });
 
-    onMounted(async () => {
-      router.push({
-        name: 'add-patient',
-      });
-    });
-    return {};
+    return {
+      colSpan,
+    };
   },
 });
 </script>

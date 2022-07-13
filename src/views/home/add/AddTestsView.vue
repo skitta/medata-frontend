@@ -1,6 +1,5 @@
 <template>
   <a-page-header title="患者信息" @back="handleCancel" :ghost="false">
-
     <template #tags>
       <a-tag color="pink" v-if="patient.resistance">IVIG 抵抗</a-tag>
       <a-tag color="red" v-if="patient.relapse">复发</a-tag>
@@ -14,8 +13,7 @@
       </a-tooltip>
       <a-tooltip>
         <template #title>提交新增数据</template>
-        <a-button type="link" size="small" @click="handleSubmit" :loading="btnLoading"
-          :disabled="!showSubmitBtn">
+        <a-button type="link" size="small" @click="handleSubmit" :loading="btnLoading" :disabled="!showSubmitBtn">
           <check-outlined />
         </a-button>
       </a-tooltip>
