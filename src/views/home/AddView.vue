@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <a-row justify="space-around">
-      <a-col :span="colSpan">
+      <a-col :xs="24" :lg="colSpan + 4" :xl="colSpan">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -47,5 +47,12 @@ export default defineComponent({
 .add {
   margin: 20px 40px;
   padding: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .add {
+    padding: 12px;
+    margin: 20px 10px;
+  }
 }
 </style>

@@ -7,7 +7,7 @@
           <img src="~@/assets/doctor.svg" alt="cover" />
         </div>
       </template>
-      <div>
+      <div class="login-card-container">
         <a-form :model="formState" @submit="handleSubmit">
           <a-form-item>
             <a-select v-model:value="formState.role" :options="roleOptions" placeholder="Select a role">
@@ -144,6 +144,12 @@ export default defineComponent({
   background-color: rgba(102, 142, 174, 0.25);
 }
 
+.login-card {
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+}
+
 .login-cover {
   display: flex;
   justify-content: center;
@@ -162,9 +168,9 @@ export default defineComponent({
   object-fit: contain;
 }
 
-.login-card {
-  width: 400px;
-  margin: auto;
+.login-card-container {
+  padding: 20px;
+  padding-bottom: 0;
 }
 
 .ant-card-hoverable {

@@ -2,7 +2,7 @@
   <div class="dashboard">
     <a-space direction="vertical" :size="16" style="width: 100%">
       <a-row :gutter="16">
-        <a-col :span="8">
+        <a-col :xs="24" :md="12" :lg="8">
           <a-card :loading="sampleCountsLoading">
             样本量
             <a-row>
@@ -12,7 +12,7 @@
             </a-row>
           </a-card>
         </a-col>
-        <a-col :span="8">
+        <a-col :xs="24" :md="12" :lg="8">
           <a-card :loading="genderRateLoading">
             性别比例 (男:女)
             <a-row>
@@ -22,7 +22,7 @@
             </a-row>
           </a-card>
         </a-col>
-        <a-col :span="8">
+        <a-col :xs="24" :md="12" :lg="8">
           <a-card :loading="ageLoading">
             平均年龄
             <a-row>

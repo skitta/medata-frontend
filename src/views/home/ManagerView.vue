@@ -2,14 +2,14 @@
   <div class="manager">
     <a-space direction="vertical" style="width: 100%">
       <a-row justify="space-between">
-        <a-col :span="4">
+        <a-col :xs="12" :md="6" :lg="6" :xl="4">
           <a-input placeholder="搜索" :allow-clear="true" @press-enter="onSearch" @change="onSearch">
             <template #prefix>
               <search-outlined style="color: rgba(0,0,0,.5)" />
             </template>
           </a-input>
         </a-col>
-        <a-col :span="2" style="text-align: right">
+        <a-col :md="4" :lg="2" style="text-align: right">
           <a-dropdown :trigger="['click']">
             <template #overlay>
               <a-menu @click="handleExport">
@@ -100,13 +100,14 @@ export default defineComponent({
         dataIndex: "in_date",
         key: "in_date",
         sorter: true,
-        width: '20%'
+        responsive: ["md"],
       },
       {
         title: "分组",
         dataIndex: "group",
         key: "group",
         filters: groupList.value.map(group => ({ text: group.label, value: group.value })),
+        responsive: ["md"],
       },
       {
         title: "标签",
@@ -116,6 +117,7 @@ export default defineComponent({
           { text: "IVIG抵抗", value: "resistance" },
           { text: "复发", value: "relapse" },
         ],
+        responsive: ["md"],
       }
     ])
     const { data, run, loading, current, pageSize } = usePagination(getPatients, {
@@ -247,5 +249,12 @@ export default defineComponent({
 .manager {
   padding: 24px;
   margin: 20px 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .manager {
+    padding: 12px;
+    margin: 20px 10px;
+  }
 }
 </style>
