@@ -114,10 +114,14 @@ export default defineComponent({
 
 .logo {
   float: left;
-  width: 120px;
-  height: 31px;
-  margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+  width: 44px;
+  height: 44px;
+  margin: 10px 24px 10px 0;
+  /* background: rgba(255, 255, 255, 0.3); */
+  background-image: url("~@/assets/logo.svg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .logout {

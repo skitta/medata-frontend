@@ -1,5 +1,5 @@
 <template>
-  <div class="manager">
+  <div class="nav-view-container">
     <a-space direction="vertical" style="width: 100%">
       <a-row justify="space-between">
         <a-col :xs="12" :md="6" :lg="6" :xl="4">
@@ -244,17 +244,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style scoped>
-.manager {
-  padding: 24px;
-  margin: 20px 40px;
-}
-
-@media screen and (max-width: 768px) {
-  .manager {
-    padding: 12px;
-    margin: 20px 10px;
-  }
-}
-</style>

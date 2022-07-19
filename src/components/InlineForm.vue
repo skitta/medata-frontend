@@ -1,5 +1,6 @@
 <template>
-  <div>
+<div class="inline-form-overflow">
+  <div class="inline-form">
     <a-row class="table-row title">
       <template v-for="(item, key) in fields" :key="key">
         <a-col :span="5" v-if="item.type === 'date'">日期</a-col>
@@ -7,7 +8,7 @@
       </template>
     </a-row>
     <a-row>
-      <a-col>
+      <a-col :span="24">
         <a-form :name="name" layout="inline" :model="dynamicValidateForm">
           <a-row v-for="(inputData, index) in dynamicValidateForm.datas" :key="index" class="table-row">
             <template v-for="(item, key) in fields" :key="key">
@@ -59,6 +60,7 @@
         </a-form>
       </a-col>
     </a-row>
+  </div>
   </div>
 </template>
 
@@ -218,6 +220,16 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.inline-form-overflow {
+  max-width: fit-content;
+  overflow: auto;
+}
+
+.inline-form {
+  min-width: 680px;
+  padding: 10px 0;
+}
+
 .table-row {
   width: 100%;
   margin-bottom: 8px;

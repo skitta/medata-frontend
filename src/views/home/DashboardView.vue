@@ -1,6 +1,7 @@
 <template>
-  <div class="dashboard">
+  <div class="nav-view-container">
     <a-space direction="vertical" :size="16" style="width: 100%">
+      <!-- 统计信息 -->
       <a-row :gutter="16">
         <a-col :xs="24" :md="12" :lg="8">
           <a-card :loading="sampleCountsLoading">
@@ -33,6 +34,7 @@
           </a-card>
         </a-col>
       </a-row>
+      <!-- 平滑的折线图 -->
       <a-row>
         <a-col :span="24">
           <a-card title="样本-时间分布" :loading="linePlotLoading">
@@ -40,8 +42,9 @@
           </a-card>
         </a-col>
       </a-row>
+      <!-- 柱状图 -->
       <a-row :gutter="16">
-        <a-col v-for="g in groups" :key="g" :span="24 / groups.length">
+        <a-col v-for="g in groups" :key="g" :xs="24" :lg="24 / groups.length">
           <a-card :title="`年龄分布(${g})`">
             <div :id="`age_hist_${g.replaceAll(' ', '_')}`"></div>
           </a-card>
@@ -173,9 +176,17 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.dashboard {
+<style>
+.nav-view-container {
   padding: 24px;
   margin: 20px 40px;
 }
+
+@media screen and (max-width: 768px) {
+  .nav-view-container {
+    padding: 0;
+    margin: 20px 10px;
+  }
+}
+
 </style>

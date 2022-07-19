@@ -22,16 +22,19 @@
     <a-space direction="vertical" style="width: 100%">
       <a-patient-detail :patient="patient" />
       <a-collapse v-model:activeKey="activeKey" ghost>
-        <a-collapse-panel key="1" header="临床信息">
+        <a-collapse-panel key="1" header="血常规">
           <a-inline-form name="bloodTests" label="血常规" :fields="bloodTest" />
-          <a-divider />
+        </a-collapse-panel>
+        <a-collapse-panel key="2" header="肝功能">
           <a-inline-form name="liverFunction" label="肝功能" :fields="liverFunction" span="6" />
-          <a-divider />
+        </a-collapse-panel>
+        <a-collapse-panel key="3" header="心脏彩超">
           <a-inline-form name="echocardiography" label="心脏彩超" :fields="echocardiography" span="4" />
-          <a-divider />
+        </a-collapse-panel>
+        <a-collapse-panel key="4" header="其他辅助检查">
           <a-inline-form name="otherTests" label="其他辅助检查" :fields="otherTest" span="9" />
         </a-collapse-panel>
-        <a-collapse-panel key="2" header="样本信息">
+        <a-collapse-panel key="5" header="样本信息">
           <a-inline-form name="samples" label="标本" :fields="samples" span="4" />
         </a-collapse-panel>
       </a-collapse>
@@ -58,7 +61,7 @@
 
 <script>
 import { defineComponent, defineAsyncComponent, toRefs, reactive, ref, toRaw } from "vue";
-import { PageHeader, Space, Collapse, Divider, Button, Tooltip, Modal, Tag, Form, Radio, message } from "ant-design-vue";
+import { PageHeader, Space, Collapse, Button, Tooltip, Modal, Tag, Form, Radio, message } from "ant-design-vue";
 import { useStore } from "vuex";
 import { computed } from "@vue/reactivity";
 import { EditOutlined, CheckOutlined } from "@ant-design/icons-vue";
@@ -76,7 +79,6 @@ export default defineComponent({
     ASpace: Space,
     ACollapse: Collapse,
     ACollapsePanel: Panel,
-    ADivider: Divider,
     AButton: Button,
     ATooltip: Tooltip,
     AModal: Modal,
@@ -253,3 +255,6 @@ export default defineComponent({
   }
 })
 </script>
+
+<style scoped>
+</style>
